@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\user; //Model untuk tabel users
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -42,8 +41,7 @@ class CustomerController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            // Password di-hash (dienkripsi)
-            'password' => Hash::make($request->password),
+            'password' => ($request->password),
             // set role sebagai user (customer)
             'role' => 'user',
             // tandai email sudah diverifikasi (AUTO)
