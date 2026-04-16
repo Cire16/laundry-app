@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\InvoiceController as AdminInvoiceController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +44,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::resource('orders', AdminOrderController::class)->except(['show']);
     Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
-    Route::get('/orders/{order}/print', [AdminOrderController::class, 'print'])->name('orders.print');
-});
+    Route::get('/orders/{order}/print',    [AdminOrderController::class, 'print'])->name('orders.print');
+
+    Route::get('/invoices', [AdminInvoiceController::class, 'index'])->name('invoices.index');
+    Route::get('/invoices/{invoice}', [AdminInvoiceController::class, 'show'])->name('invoices.show');
+    Route::get('/invoices/{invoice}/print', [AdminInvoiceController::class, 'print'])->name('invoices.print');
+
+    Route::get('/reports',        [AdminReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/export', [AdminReportController::class, 'exportPdf'])->name('reports.export');
+    });
+
 // Route bawaan Laravel untuk authentication
 require __DIR__ . '/auth.php';
