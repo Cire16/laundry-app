@@ -13,6 +13,7 @@
     <a href="{{route('profile.edit')}}">Profile</a>
     <a href="{{route('admin.services.index')}}">Service</a>
     <a href="{{route('admin.customers.index')}}">Customer</a>
+    <a href="{{route('admin.orders.index')}}">Order</a>
     <form action="{{route('logout')}}" style="display:inline" method="POST]">\
         @csrf
         <button type="submit">Logout</button>
